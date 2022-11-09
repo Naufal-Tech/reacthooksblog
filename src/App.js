@@ -10,6 +10,7 @@ import { useState, useEffect } from 'react';
 import Moment from 'react-moment';
 import api from './api/posts';
 import EditPost from './components/EditPost';
+// import useWindowSize from './hooks/useWindowSize';
 
 function App() {
   const [posts, setPosts] = useState([])
@@ -20,7 +21,9 @@ function App() {
   const [editTitle, setEditTitle] = useState('');
   const [editBody, setEditBody] = useState('');
   const navigate = useNavigate();
+  // const { width } = useWindowSize();
 
+  
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -105,6 +108,7 @@ function App() {
       <Route path="/" element={<Layout
         search={search}
         setSearch={setSearch}
+        // width={width}
       />}>
         <Route index element={<Home posts={searchResults} />} />
         <Route path="post">
