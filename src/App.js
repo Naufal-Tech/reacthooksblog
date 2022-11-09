@@ -11,6 +11,7 @@ import Moment from 'react-moment';
 import api from './api/posts';
 import EditPost from './components/EditPost';
 // import useWindowSize from './hooks/useWindowSize';
+import useAxiosFetch from './hooks/useAxiosFetch';
 
 function App() {
   const [posts, setPosts] = useState([])
@@ -23,29 +24,46 @@ function App() {
   const navigate = useNavigate();
   // const { width } = useWindowSize();
 
-  
+
+  // -----------------USING AXIOS-------------------
+  const { data, fetchError, isLoading } = useAxiosFetch('http://localhost:3500/posts');
+
   useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const response = await api.get('/posts')
-        setPosts(response.data);
-      } catch (err) {
-        if (err.response) {
+    setPosts(data);
+  }, [data])
+
+
+
+
+
+
+  // -------------------USING FECTH-------------------
+  
+  // useEffect(() => {
+  //   const fetchPosts = async () => {
+  //     try {
+  //       const response = await api.get('/posts')
+  //       setPosts(response.data);
+  //     } catch (err) {
+  //       if (err.response) {
 
        
-        // Not in the 200 response (not okay)
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-        } else {
-        // No Response (404)
-          console.log(`Error: ${err.message}`);
-        }
-      }
-    }
+  //       // Not in the 200 response (not okay)
+  //       console.log(err.response.data);
+  //       console.log(err.response.status);
+  //       console.log(err.response.headers);
+  //       } else {
+  //       // No Response (404)
+  //         console.log(`Error: ${err.message}`);
+  //       }
+  //     }
+  //   }
 
-    fetchPosts();
-  }, [])
+  //   fetchPosts();
+  // }, [])
+
+  
+  // -----------------END OF USING FECTH----------------
 
   useEffect(() => {
     const filteredResults = posts.filter((post) =>
@@ -108,9 +126,10 @@ function App() {
       <Route path="/" element={<Layout
         search={search}
         setSearch={setSearch}
+        fetchError={fetchError}
         // width={width}
       />}>
-        <Route index element={<Home posts={searchResults} />} />
+        <Route index element={<Home posts={searchResults} isLoading={isLoading} fetchError={fetchError}/>} />
         <Route path="post">
           <Route index element={<NewPost
             handleSubmit={handleSubmit}
@@ -118,6 +137,7 @@ function App() {
             setPostTitle={setPostTitle}
             postBody={postBody}
             setPostBody={setPostBody}
+            
           />} />
           <Route path=":id" element={<PostPage
             posts={posts}
