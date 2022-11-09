@@ -1,0 +1,34 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "Belajar NodeJs",
+      "datetime": "November 07, 2022 11:17:36 AM",
+      "body": "Register, auth token, dsb!"
+    },
+    {
+      "id": 2,
+      "title": "Belajar React",
+      "datetime": "November 07, 2022 11:17:36 AM",
+      "body": "Belajar useState, useEffect (Hooks), Redux, dsb!"
+    },
+    {
+      "id": 3,
+      "title": "Belajar PostgreSQL dan MongoDB",
+      "datetime": "November 07, 2022 11:17:36 AM",
+      "body": "ORM Postgre dan MongoDB, Tabel Relational, dsb!"
+    },
+    {
+      "id": 4,
+      "title": "Aku coba ya",
+      "datetime": "2022-11-08T07:43:44.831Z",
+      "body": "wkkw"
+    },
+    {
+      "id": 5,
+      "title": "Kæmu nænyæ2",
+      "datetime": "2022-11-09T05:39:14.077Z",
+      "body": "kamu nanyyaaea?? Kamu bertanyea tanyea? Aku jawab yea. Trus bisanya bikin candu? Terchanduw chanduw??"
+    }
+  ]
+}
